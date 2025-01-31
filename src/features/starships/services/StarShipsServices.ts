@@ -1,8 +1,8 @@
 import axios from "axios";
-import { listships } from "../api/endpoints";
 import { Starships } from "../types/StarshipsTypes";
+import { urls } from "../../../shared/api/urls";
 
-export const allStarships = async (): Promise<Starships> => {
-  const { data } = await axios.get<Starships>(listships.allStarships);
+export const getAllStarships = async (): Promise<Starships> => {
+  const { data } = await axios.get<Starships>(urls.allStarshipsUrl);
   return data;
 };

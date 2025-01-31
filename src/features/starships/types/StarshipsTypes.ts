@@ -19,8 +19,8 @@ export interface Starship {
   hyperdrive_rating: string;
   MGLT: string;
   starship_class: string;
-  pilots: string[];
-  films: string[];
+  pilots: string[]; // Array de urls con la informacion de los pilotos
+  films: string[]; // Array de urls con la informaion de las peliculas
   created: Date;
   edited: Date;
   url: string;

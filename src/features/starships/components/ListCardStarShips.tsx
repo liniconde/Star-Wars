@@ -2,16 +2,24 @@ import { Starship } from "../types/StarshipsTypes";
 import CardStarShips from "./CardStarShips";
 
 interface Props {
-  starship: Starship[];
+  starshipsList: Starship[];
 }
 
 export function ListCardStarShips(props: Props) {
-  const { starship } = props;
+  const { starshipsList } = props;
+
+  if (starshipsList.length === 0) {
+    return (
+      <div className="text-white text-center mt-10">
+        <p>No starships available.</p>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <div className=" grid grid-cols-2 gap-6 p-4  ">
-        {starship.map((res) => (
+    <div className=" flex justify-center">
+      <div className="grid grid-cols-1 gap-6 p-4">
+        {starshipsList.map((res) => (
           <div
             key={res.name}
             className="transform transition-transform duration-300 hover:scale-105"
