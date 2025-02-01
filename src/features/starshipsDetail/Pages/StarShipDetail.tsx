@@ -62,14 +62,21 @@ export function StarShipDetail() {
 
   return (
     <div>
-      <div className="w-3/4 mx-auto mt-10">
+      <div className="w-3/4 mx-auto justify-between mt-10">
         {details ? (
           <StarShipDetailCard details={details} imageUrl={imageUrl} />
         ) : (
           <p className="text-white text-center">Loading...</p>
         )}
       </div>
-      <div className="flex flex-col gap-2 border shadow-lg border-gray-400">
+      <div className="relative flex items-center my-8">
+        <div className="flex-grow border-t border-gray-500"></div>
+        <span className="px-4 text-white text-lg font-bold tracking-widest">
+          PILOTS
+        </span>
+        <div className="flex-grow border-t border-gray-500"></div>
+      </div>
+      <div className="flex flex-wrap justify-center text-center gap-10 shadow-lg p-5">
         {pilots.map((piloto) => (
           <div
             key={piloto.name}
@@ -82,14 +89,21 @@ export function StarShipDetail() {
           </div>
         ))}
       </div>
-      <div className="flex flex-col gap-2 border shadow-lg border-gray-400">
+      <div className="relative flex items-center my-8">
+        <div className="flex-grow border-t border-gray-500"></div>
+        <span className="px-4 text-white text-lg font-bold tracking-widest">
+          FILMS
+        </span>
+        <div className="flex-grow border-t border-gray-500"></div>
+      </div>
+      <div className="flex flex-wrap text-center justify-center gap-10 shadow-lg p-5">
         {films.map((film) => (
           <div
             key={film.title}
             className="transform transition-transform duration-300 hover:scale-105"
           >
             <CardDetail
-              image={urls.getStarshipPilostUrl(getIdFromUrl(film.url))}
+              image={urls.getStarshipFilmsUrl(getIdFromUrl(film.url))}
               name={film.title}
               episode_id={film.episode_id}
             />

@@ -6,7 +6,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import StarWars01 from "../../../assets/imagenes/StarWars01.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStateForm } from "../../auth/store/handleForm";
 import Auth from "../../auth/Auth";
 import { useUser } from "../../auth/store/user";
@@ -17,13 +17,14 @@ import Audio from "../../../assets/audio/https___voicebot.su_es_sound_star-wars-
 export function Header() {
   const { openModal } = useStateForm((state) => state);
   const { changeUser, isLogin } = useUser((state) => state);
+  const navigate = useNavigate();
   const [isMusic, setIsMusic] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const buttonRef = useRef<HTMLParagraphElement>(null);
 
   const logout = () => {
-    localStorage.removeItem("auth");
     changeUser(false);
+    navigate("/");
   };
 
   return (

@@ -8,7 +8,7 @@ import Personajes2 from "../../../assets/imagenes/personajes2.jpeg";
 import Personajes3 from "../../../assets/imagenes/Personajes3.gif";
 
 // Datos de las cards con imágenes para el carrusel
-interface cardData {
+interface CardData {
   title: string;
   images: string[];
   description: string;

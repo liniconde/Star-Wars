@@ -1,5 +1,4 @@
 import { Starship } from "../../starships/types/StarshipsTypes";
-import { CardsDetails } from "./CardDetail";
 
 interface Props {
   details: Starship;

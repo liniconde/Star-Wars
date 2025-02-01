@@ -1,17 +1,18 @@
 import { create } from "zustand";
+import { AuthRoutes } from "../Auth";
 
 interface State {
-  form: string;
+  form: AuthRoutes;
   isOpen: boolean;
-  changeForm(from: string): void;
+  changeForm(from: AuthRoutes): void;
   closeModal(): void;
   openModal(): void;
 }
 
 export const useStateForm = create<State>((set) => ({
-  form: "INIT",
+  form: AuthRoutes.INIT,
   isOpen: false,
-  changeForm: (form: string) => set({ form }),
+  changeForm: (form: AuthRoutes) => set({ form }),
   closeModal: () => set({ isOpen: false }),
   openModal: () => set({ isOpen: true }),
 }));

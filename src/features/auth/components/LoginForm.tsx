@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom"; // ✅ Importamos useNavigate pa
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"; // ✅ Firebase Authentication
 import { useStateForm } from "../store/handleForm";
 import disney from "../../../assets/imagenes/disney.svg";
+import { useUser } from "../store/user";
 
 export default function LoginForm() {
   const { closeModal } = useStateForm((state) => state); // ✅ Solo cerramos el modal si existe
-  const navigate = useNavigate(); // ✅ Hook para redirección
+  const navigate = useNavigate();
+  const { changeUser } = useUser((state) => state);
   const [email, setEmail] = useState(""); // Estado del email
   const [password, setPassword] = useState(""); // Estado de la contraseña
   const [loading, setLoading] = useState(false); // Estado de carga
   const [error, setError] = useState<string | null>(null); // ✅ Agregado estado de error
 
-  const auth = getAuth(); // ✅ Obtenemos la instancia de autenticación de Firebase
+  const auth = getAuth(); // Obtenemos la instancia de autenticación de Firebase
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,8 +30,9 @@ export default function LoginForm() {
     try {
       // Intentamos iniciar sesión con Firebase Auth
       const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log("Respuesta de Firebase:", response);
       if (response.user) {
-        localStorage.setItem("auth", "true"); // Guardamos autenticación
+        changeUser(true); // Cambiamos el estado de autenticación
         closeModal(); // Cerramos modal de login (si existe)
         navigate("/starships"); // ✅ Redirigir a StarShipsPage
       }

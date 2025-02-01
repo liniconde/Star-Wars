@@ -3,6 +3,7 @@ import { useStateForm } from "../store/handleForm";
 import disney from "../../../assets/imagenes/disney.svg";
 import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { auth } from "../../../config/firebase";
+import { AuthRoutes } from "../Auth";
 
 export default function HandleAuth() {
   const { changeForm, openModal } = useStateForm((state) => state);
@@ -20,7 +21,7 @@ export default function HandleAuth() {
       const methods = await fetchSignInMethodsForEmail(auth, trimmedEmail);
       console.log("Métodos obtenidos:", methods);
 
-      changeForm(methods.length > 0 ? "LOGIN" : "REGISTER");
+      changeForm(methods.length > 0 ? AuthRoutes.INIT : AuthRoutes.REGISTER);
       openModal();
     } catch (err) {
       setError("Error verificando el email. Intenta de nuevo.");

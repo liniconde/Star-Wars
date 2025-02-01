@@ -3,6 +3,9 @@ import DisnetLogo from "../../../assets/imagenes/disney.svg";
 import { appFirebase } from "../../../config/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useStateForm } from "../store/handleForm";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 interface State {
   name: string;
@@ -22,6 +25,7 @@ export default function RegisterForm() {
   const [error, setError] = useState<State["error"]>();
   const auth = getAuth(appFirebase);
   const { closeModal } = useStateForm((state) => state);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,12 +53,20 @@ export default function RegisterForm() {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        localStorage.setItem("auth", "true");
         closeModal();
+        showNotification("Registration successful!");
+        navigate("/login");
       }
     } catch (err) {
       setError("Ocurrió un error en el registro. Inténtao de nuevo.");
     }
+  };
+
+  const showNotification = (message: string) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000, // Se cierra en 3 segundos
+    });
   };
 
   return (
