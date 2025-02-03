@@ -20,13 +20,13 @@ export function StarShipDetailCard({ details, imageUrl }: Props) {
   }
 
   return (
-    <div className="relative flex justify-normal items-center p-8 shadow-lg mt-10">
+    <div className="flex items-center justify-center rounded-lg overflow-hidden w-[90%] mx-auto">
       <div className="flex-shrink-0">
         <img
           src={imageUrl}
           alt={details.name}
           onError={handleImageError}
-          className="w-[700px] h-auto rounded-lg shadow-lg"
+          className="w-[700px] h-auto rounded-lg object-cover shadow-lg"
         />
       </div>
       <div className="absolute top-1/6 left-[80%] transform -translate-x-1/2 bg-gray-800 rounded-lg border-4 border-dashed border-[#FFE81F] p-6 shadow-lg w-[600px] max-w-[600px]">

@@ -117,12 +117,14 @@ export function Header() {
         >
           Home
         </Link>
-        <Link
-          to="/starships"
-          className="text-white px-4 py-2 rounded hover:bg-gray-700 transition"
-        >
-          Starships
-        </Link>
+        {isLogin && (
+          <Link
+            to="/starships"
+            className="text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+          >
+            Starships
+          </Link>
+        )}
       </div>
 
       <div className="border-t border-gray-500 w-full mb-4"></div>

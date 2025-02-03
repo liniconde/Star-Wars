@@ -46,6 +46,7 @@ export default function Modal(props: Props) {
       {isOpen ? (
         <div
           ref={bgModal}
+          data-testid="modal-background"
           style={{ backgroundImage: `url(${bg})` }}
           className=" z-50 bg-cover bg-center fixed inset-0 h-screen w-screen flex justify-center items-center"
         >

@@ -9,9 +9,9 @@ export default function LoginForm() {
   const { closeModal } = useStateForm((state) => state); // ✅ Solo cerramos el modal si existe
   const navigate = useNavigate();
   const { changeUser } = useUser((state) => state);
-  const [email, setEmail] = useState(""); // Estado del email
-  const [password, setPassword] = useState(""); // Estado de la contraseña
-  const [loading, setLoading] = useState(false); // Estado de carga
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null); // ✅ Agregado estado de error
 
   const auth = getAuth(); // Obtenemos la instancia de autenticación de Firebase
@@ -32,9 +32,9 @@ export default function LoginForm() {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log("Respuesta de Firebase:", response);
       if (response.user) {
-        changeUser(true); // Cambiamos el estado de autenticación
-        closeModal(); // Cerramos modal de login (si existe)
-        navigate("/starships"); // ✅ Redirigir a StarShipsPage
+        changeUser(true);
+        closeModal();
+        navigate("/starships", { replace: true }); // ✅ Redirigir a StarShipsPage
       }
     } catch (err) {
       setError("Correo o contraseña incorrectos. Intenta de nuevo.");

@@ -62,7 +62,7 @@ export function StarShipDetail() {
 
   return (
     <div>
-      <div className="w-3/4 mx-auto justify-between mt-10">
+      <div className="w-3/4 mx-auto justify-center mt-10">
         {details ? (
           <StarShipDetailCard details={details} imageUrl={imageUrl} />
         ) : (
